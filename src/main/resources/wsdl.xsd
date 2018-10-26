@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:tns="http://issuehandling.decipher.com/"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        name="ComplaintServiceService"
+        targetNamespace="http://issuehandling.decipher.com/">
+
+    <wsdl:types>
+        <xs:schema
+                xmlns:xs="http://www.w3.org/2001/XMLSchema"
+                xmlns:tns="http://issuehandling.decipher.com/"
+                elementFormDefault="unqualified"
+                targetNamespace="http://issuehandling.decipher.com/"
+                version="1.0">
+
+            <xs:element name="getGreet" type="tns:getGreet"/>
+
+            <xs:element name="getGreetResponse" type="tns:getGreetResponse"/>
+
+            <xs:complexType name="getGreet">
+                <xs:sequence/>
+            </xs:complexType>
+
+            <xs:complexType name="getGreetResponse">
+                <xs:sequence>
+                    <xs:element minOccurs="0" name="return" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+
+        </xs:schema>
+    </wsdl:types>
+
+    <wsdl:message name="getGreet">
+        <wsdl:part element="tns:getGreet" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:message name="getGreetResponse">
+        <wsdl:part element="tns:getGreetResponse" name="parameters">
+        </wsdl:part>
+    </wsdl:message>
+
+    <wsdl:portType name="ComplaintService">
+        <wsdl:operation name="getGreet">
+            <wsdl:input message="tns:getGreet" name="getGreet">
+            </wsdl:input>
+            <wsdl:output message="tns:getGreetResponse" name="getGreetResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ComplaintServiceServiceSoapBinding" type="tns:ComplaintService">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getGreet">
+            <soap:operation soapAction="" style="document"/>
+            <wsdl:input name="getGreet">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="getGreetResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="ComplaintServiceService">
+        <wsdl:port binding="tns:ComplaintServiceServiceSoapBinding" name="ComplaintServicePort">
+            <soap:address location="http://localhost:8080/isssue-handle-1.0-SNAPSHOT/ComplaintService"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
